@@ -1,0 +1,103 @@
+\documentclass{assignment}
+\ProjectInfos{高等热力学与统计物理}{PHYS2110}{2020-2021学年第二学期}{期末考试}{截止时间：2021. 6. 16（周三）12:00}{陈稼霖}{45875852}
+
+\begin{document}
+\begin{itemize}
+    \item 通用符号：$T=$ 温度，$P=$ 压强，$V=$ 体积，$N=$ 粒子数，$\rho=$ 数密度，$\mu=$ 化学势，$k=$ Boltzmann 常数，$\hbar=$ Plank 常数.
+    \item 热力学极限：
+    \[
+        N\rightarrow\infty\quad V\rightarrow\infty\quad\rho=\frac{N}{V}\neq 0\text{且有限}.
+    \]
+\end{itemize}
+\begin{prob}
+    某一磁性物质对外界所做的微功为
+    \[
+        \delta W=-H\mathrm{d}M
+    \]
+    其中 $H$ 和 $M$ 为磁场强度和磁化强度. 体积固定且设为 $1$.\\
+    如果 $H$, $M$ 和 温度 $T$ 的关系为
+    \[
+        M=\frac{aH}{T-T_c}
+    \]
+    $a$, $T_c$ 为常数且 $T>T_c$.
+    \begin{itemize}
+        \item[1)] 证明该物质的内能由下式给出：（10 分）
+        \[
+            U(T,M)=U(T,0)-\frac{M^2T_c}{2a}.
+        \]
+        \item[2)] 求该物质在 $H$ 固定条件下的热容量，$C_H(T,M)$.（10 分）
+    \end{itemize}
+\end{prob}
+\begin{sol}
+    
+\end{sol}
+\clearpage
+
+\begin{prob}
+    一温度为 $T$ 的圆柱形容器被一活塞隔成两部分. 每部分放置一种非相对论 Fermi 气体. 活塞可以自由移动. 两种 Fermi 气体的分子质量相同，但自旋不同，分别为 $j_1$ 和 $j_2$. 求 $T=0$ 和 $T\rightarrow\infty$ 条件下两种 Fermi 气体分子数密度的比值.（20 分）
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=.5\columnwidth]{P2.png}
+    \end{figure}
+\end{prob}
+\begin{sol}
+    
+\end{sol}
+\clearpage
+
+\begin{prob}
+    考虑一低密度的经典单原子非理想气体，原子之间的相互作用势能为
+    \[
+        u(r)=\left\{\begin{array}{ll}
+            \infty,&r\leq a\\
+            -g,&a<r<b\\
+            0,&r\geq b
+        \end{array}\right.
+    \]
+    \begin{itemize}
+        \item[1)] 求精确到 $\rho^2$ 的状态方程，即把 $P/kT$ 展开到 $\rho^2$.（10 分）
+        \item[2)] 求该气体的化学势对理想气体化学势的领头阶修正.（5 分）
+        \item[3)] 求该气体的熵和内能对理想气体熵和内能的领头阶修正.（5 分）
+    \end{itemize}
+\end{prob}
+\begin{sol}
+    
+\end{sol}
+\clearpage
+
+\begin{prob}
+    用 Monte Carlo 方法数值求解零场下正方格点上的二维 Ising 模型. 假设最近邻铁磁耦合，且任何近邻对的耦合能量相同.
+    \begin{itemize}
+        \item[1)] 写出 Hamiltonian 和计算程序的流程.（5 分）
+        \item[2)] 绘出磁化强度作为温度的函数的图像.（10 分）
+        \item[3)] 确定临界温度并与严格解比较.（5 分）
+    \end{itemize}
+    提示：要求格点至少为 $10\times 10$，并取周期性边界条件.
+\end{prob}
+\begin{sol}
+    
+\end{sol}
+\clearpage
+
+\begin{prob}
+    弱耦合自旋为零玻色气体的相互作用算符为
+    \[
+        \Omega=\frac{1}{2V}g\sum_{\vec{p}_1+\vec{p}_2=\vec{p}_1'+\vec{p}_2'}a_{\vec{p}_1'}^{\dagger}a_{\vec{p}_2'}^{\dagger}a_{\vec{p}_2}a_{\vec{p}_1}\quad g>0
+    \]
+    其中 $a_{\vec{p}}$ 和 $a_{\vec{p}^{\dagger}}$ 为动量表象的湮灭产生算符，$g$ 为耦合常数. 令 $\lvert\{n_{\vec{p}}\}\rangle$ 为自由波色气体的能量本征态，其中 $n_{\vec{p}}$ 为动量 $\vec{p}$ 态的占据数.
+    \begin{itemize}
+        \item[1)] 证明相互作用能密度的平均值
+        \[
+            E[\{n_{\vec{p}}\}]\equiv\frac{1}{V}\langle\{n_{\vec{p}}\}\rvert\Omega\lvert\{n_{\vec{p}}\}\rangle=g\rho^2-\frac{g}{2V}\sum_{\vec{p}}n_{\vec{p}}^2-\frac{g\rho}{2V}
+        \]
+        其中 $\rho$ 玻色子的数密度.
+        \item[2)] 在热力学极限下比较有 Bose-Einstein 凝聚的上述平均值 $E$ 和没有 Bose-Einstein 凝聚的上述平均值 $E'$，证明
+        \[
+            E<E'\tag{\text{（5 分）}}
+        \]
+    \end{itemize}
+\end{prob}
+\begin{pf}
+    
+\end{pf}
+\end{document}
