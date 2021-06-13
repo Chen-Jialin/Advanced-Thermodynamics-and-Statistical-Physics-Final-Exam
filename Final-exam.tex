@@ -68,7 +68,8 @@
         \end{align}
         \item[2)] 该物质在 $H$ 固定条件下的热容量为
         \begin{align}
-            C_H(T,M)=\left(\frac{\partial U(T,M)}{\partial T}\right)_H=\left[\frac{\partial U(T,0)}{\partial T}\right]_H-\frac{MT_c}{a}\left(\frac{\partial M}{\partial T}\right)_H=C_H(T,0)+\frac{T_cMH}{(T-T_c)^2}.
+            C_H(T,M)=&\lim_{\Delta T\rightarrow 0}\left(\frac{\Delta Q}{\Delta T}\right)_H=\lim_{\Delta T\rightarrow 0}\left(\frac{\Delta U-H\,\mathrm{d}M}{\Delta T}\right)_H=\frac{\mathrm{d}U(T,M=0)}{\mathrm{d}T}-\frac{T_cM}{a}\left(\frac{\partial M}{\partial T}\right)_H-H\left(\frac{\partial M}{\partial T}\right)_H\\
+            =&\frac{\mathrm{d}U(T,M=0)}{\mathrm{d}T}+\left(\frac{T_cM}{a}+H\right)\frac{aH}{(T-T_c)^2}=\frac{\mathrm{d}U(T,M=0)}{\mathrm{d}T}+\frac{TM^2}{a(T-T_c)}.
         \end{align}
         % 一方面，由热力学第一定律以及该物质在 $H$ 固定下的热容量的定义 $C_M(T,M)=\left(\frac{\partial U}{\partial T}\right)_M$，
         % \begin{align}
