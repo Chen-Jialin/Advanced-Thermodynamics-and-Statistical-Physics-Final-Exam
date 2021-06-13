@@ -29,7 +29,144 @@
     \end{itemize}
 \end{prob}
 \begin{sol}
-    
+    \begin{itemize}
+        \item[1)] 由热力学第一定律的微分形式
+        \begin{align}
+            \mathrm{d}U=\delta Q-\delta W=T\,\mathrm{d}S+H\,\mathrm{d}M.
+        \end{align}
+        以及 Helmholtz 自由能的定义
+        \begin{align}
+            F=U-TS,
+        \end{align}
+        可得 Helmholtz 自由能的微分为
+        \begin{align}
+            \mathrm{d}F=-S\,\mathrm{d}T+H\,\mathrm{d}M.
+        \end{align}
+        由上式可得
+        \begin{align}
+            S=&-\left(\frac{\partial F}{\partial T}\right)_M,\\
+            H=&\left(\frac{\partial F}{\partial M}\right)_T.
+        \end{align}
+        以上两式分别关于磁化强度 $M$ 和 温度 $T$ 求导可得
+        \begin{align}
+            \label{1-dS/dM=-dH/dT}
+            \left(\frac{\partial S}{\partial M}\right)_T=-\frac{\partial^2F}{\partial M\partial T}=-\left(\frac{\partial H}{\partial T}\right)_M.
+        \end{align}
+
+        在给定温度下，磁性物质的内能关于磁化强度 $M$ 的偏导为
+        \begin{align}
+            \left(\frac{\partial U}{\partial M}\right)_T=T\left(\frac{\partial S}{\partial M}\right)_T+H.
+        \end{align}
+        将式 \eqref{1-dS/dM=-dH/dT} 以及 $H$, $M$ 和 $T$ 的关系 $M=\frac{aH}{T-T_c}$，代入上式可得
+        \begin{align}
+            \label{1-dU/dM}
+            \left(\frac{\partial U}{\partial M}\right)_T=-T\left(\frac{\partial H}{\partial T}\right)_M+H=-\frac{TM}{a}+\frac{(T-T_c)M}{a}=-\frac{T_cM}{a}.
+        \end{align}
+        因此，
+        \begin{align}
+            U(T,M)=U(T,0)+\int_0^M\left(\frac{\partial U}{\partial M}\right)_T\,\mathrm{d}M=U(T,0)-\int_0^M\frac{T_cM'}{a}\,\mathrm{d}M'=U(T,0)-\frac{T_cM^2}{2a}.
+        \end{align}
+        \item[2)] 该物质在 $H$ 固定条件下的热容量为
+        \begin{align}
+            C_H(T,M)=\left(\frac{\partial U(T,M)}{\partial T}\right)_H=\left[\frac{\partial U(T,0)}{\partial T}\right]_H-\frac{MT_c}{a}\left(\frac{\partial M}{\partial T}\right)_H=C_H(T,0)+\frac{T_cMH}{(T-T_c)^2}.
+        \end{align}
+        % 一方面，由热力学第一定律以及该物质在 $H$ 固定下的热容量的定义 $C_M(T,M)=\left(\frac{\partial U}{\partial T}\right)_M$，
+        % \begin{align}
+        %     T\,\mathrm{d}S=\mathrm{d}U-H\,\mathrm{d}M=\left(\frac{\partial U}{\partial T}\right)_M\,\mathrm{d}T+\left(\frac{\partial U}{\partial M}\right)_T\,\mathrm{d}M-H\,\mathrm{d}M=C_M\,\mathrm{d}T+\left(\frac{\partial U}{\partial M}\right)_T\,\mathrm{d}M-H\,\mathrm{d}M.
+        % \end{align}
+        % 将式 \eqref{1-dU/dM} 代入上式可得
+        % \begin{align}
+        %     \label{1-TdS-1}
+        %     T\,\mathrm{d}S=C_M\,\mathrm{d}T-T\left(\frac{\partial H}{\partial T}\right)_M\,\mathrm{d}M.
+        % \end{align}
+        % 另一方面，该物质的 Gibbs 势为
+        % \begin{align}
+        %     G=U-TS-HM.
+        % \end{align}
+        % 从而 Gibbs 势的微分为
+        % \begin{align}
+        %     \mathrm{d}G=-S\,\mathrm{d}T-M\,\mathrm{d}H.
+        % \end{align}
+        % 由上式得
+        % \begin{align}
+        %     S=&-\left(\frac{\partial G}{\partial T}\right)_H,\\
+        %     M=&-\left(\frac{\partial G}{\partial H}\right)_T.
+        % \end{align}
+        % 以上两式分别关于磁场强度 $H$ 和熵 $S$ 求偏导可得
+        % \begin{align}
+        %     \label{1-dT/dH=-dM/dS}
+        %     \left(\frac{\partial S}{\partial H}\right)_T=\frac{\partial^2\mathcal{H}}{\partial S\partial H}=-\left(\frac{\partial M}{\partial T}\right)_H.
+        % \end{align}
+        % 磁性物质的焓定义为
+        % \begin{align}
+        %     \mathcal{H}=U-HM,
+        % \end{align}
+        % 焓的微分为
+        % \begin{align}
+        %     \label{1-dH}
+        %     \mathrm{d}\mathcal{H}=T\,\mathrm{d}S-M\,\mathrm{d}H,
+        % \end{align}
+        % 焓 $\mathcal{H}$ 关于磁场强度 $H$ 的偏导为
+        % \begin{align}
+        %     \left(\frac{\partial\mathcal{H}}{\partial H}\right)_T=T\left(\frac{\partial S}{\partial H}\right)_T-M.
+        % \end{align}
+        % 将式 \eqref{1-dT/dH=-dM/dS} 代入上式可得
+        % \begin{align}
+        %     \label{1-dH/dH}
+        %     \left(\frac{\partial\mathcal{H}}{\partial H}\right)_T=-T\left(\frac{\partial M}{\partial T}\right)_H-M.
+        % \end{align}
+        % 该物质在 $H$ 固定条件下的热容量 $C_H(T,M)=\left(\frac{\partial U}{\partial T}\right)_H-H\left(\frac{\partial M}{\partial T}\right)_H=\left(\frac{\partial\mathcal{H}}{\partial T}\right)_H$，由式 \eqref{1-dH}
+        % \begin{align}
+        %     T\,\mathrm{d}S=\mathrm{d}\mathcal{H}+M\,\mathrm{d}H=\left(\frac{\partial\mathcal{H}}{\partial T}\right)_H\,\mathrm{d}T+\left(\frac{\partial\mathcal{H}}{\partial H}\right)_T\,\mathrm{d}H+M\,\mathrm{d}H=C_H\,\mathrm{d}T+\left(\frac{\partial\mathcal{H}}{\partial H}\right)_T\,\mathrm{d}H+M\,\mathrm{d}H.
+        % \end{align}
+        % 将式 \eqref{1-dH/dH} 以及 $H$, $M$ 和 $T$ 的关系 $M=\frac{aH}{T-T_c}$，代入上式可得
+        % \begin{align}
+        %     \label{1-TdS-2}
+        %     T\,\mathrm{d}S=C_H\,\mathrm{d}T-T\left(\frac{\partial M}{\partial T}\right)_H\,\mathrm{d}H.
+        % \end{align}
+
+        % 式 \eqref{1-TdS-1} 和 \eqref{1-TdS-2} 联立消去 $T\,\mathrm{d}S$ 得
+        % \begin{gather}
+        %     (C_H-C_M)\,\mathrm{d}T=T\left[\left(\frac{\partial M}{\partial T}\right)_H\,\mathrm{d}H+\left(\frac{\partial H}{\partial T}\right)_M\,\mathrm{d}M\right],\\
+        %     \label{1-dT-1}
+        %     \Longrightarrow\mathrm{d}T=\frac{T}{C_H-C_M}\left[\left(\frac{\partial H}{\partial T}\right)_M\,\mathrm{d}M+\left(\frac{\partial M}{\partial T}\right)_H\,\mathrm{d}H\right]
+        % \end{gather}
+        % 由状态方程得
+        % \begin{align}
+        %     \label{1-dT-2}
+        %     \mathrm{d}T=\left(\frac{\partial T}{\partial M}\right)_H\,\mathrm{d}M+\left(\frac{\partial T}{\partial H}\right)_M\mathrm{d}H
+        % \end{align}
+        % 比较上面两式（\eqref{1-dT-1} 和 \eqref{1-dT-2}）可得
+        % \begin{align}
+        %     \frac{T}{C_H-C_M}\left(\frac{\partial H}{\partial T}\right)_M=&\left(\frac{\partial T}{\partial M}\right)_H,\\
+        %     \frac{T}{C_H-C_M}\left(\frac{\partial M}{\partial T}\right)_H=&\left(\frac{\partial T}{\partial H}\right)_M,
+        % \end{align}
+        % \begin{align}
+        %     \label{1-CH-CM}
+        %     \Longrightarrow C_H-C_M=\frac{T\left(\frac{\partial H}{\partial T}\right)_M}{\left(\frac{\partial T}{\partial M}\right)_H}.
+        % \end{align}
+
+        % 接下来考虑绝热过程，令式 \eqref{1-TdS-1} 和 \eqref{1-TdS-2} 中的 $\mathrm{d}S=0$，有
+        % \begin{align}
+        %     C_M=&T\left(\frac{\partial H}{\partial T}\right)_M\left(\frac{\partial M}{\partial T}\right)_S,\\
+        %     C_H=&T\left(\frac{\partial M}{\partial T}\right)_H\left(\frac{\partial H}{\partial T}\right)_S.
+        % \end{align}
+        % 上面两式相除可得
+        % \begin{align}
+        %     \label{1-CH/CM}
+        %     \frac{C_H}{C_M}=\frac{\left(\frac{\partial M}{\partial T}\right)_H\left(\frac{\partial H}{\partial T}\right)_S}{\left(\frac{\partial H}{\partial T}\right)_M\left(\frac{\partial M}{\partial T}\right)_S}=-\frac{\left(\frac{\partial M}{\partial H}\right)_T}{\left(\frac{\partial M}{\partial H}\right)_S}=
+        % \end{align}
+        % 联立式 \eqref{1-CH-CM} 和 \eqref{1-CH/CM} 可得
+        % \begin{align}
+        %     C_H=-\frac{T\left[\left(\frac{\partial M}{\partial T}\right)_H\right]^2}{\left(\frac{\partial M}{\partial H}\right)_T-\left(\frac{\partial M}{\partial H}\right)_S}
+        % \end{align}
+        % 其中根据 $H$, $M$ 和 $T$ 的关系 $M=\frac{aH}{T-T_c}$，
+        % \begin{align}
+        %     \left(\frac{\partial M}{\partial T}\right)_H=&-\frac{aH}{(T-T_c)^2},\\
+        %     \left(\frac{\partial M}{\partial H}\right)_T=&\frac{a}{T-T_c}.
+        % \end{align}
+        % 在绝热磁化中，
+    \end{itemize}
 \end{sol}
 \clearpage
 
