@@ -179,7 +179,62 @@
     \end{figure}
 \end{prob}
 \begin{sol}
-    
+    非简并情况下，非相对论 Fermi 气体的状态方程为
+    \begin{align}
+        \frac{P}{kT}=\frac{\omega}{\lambda^3}\left(z-\frac{z^2}{2^{5/2}}+\cdots\right).
+    \end{align}
+    粒子数密度为
+    \begin{align}
+        \rho=\frac{\omega}{\lambda^3}\left(z-\frac{z^2}{2^{3/2}}+\cdots\right).
+    \end{align}
+    其中热波长 $\lambda=\sqrt{\frac{2\pi}{mkT}}\hbar$，易逸度 $z=e^{\beta\mu}$. 在 $T\rightarrow\infty$ 条件下，$z\ll 1$，以上两式联立解得
+    \begin{align}
+        \frac{P}{kT}=\rho\left(1+\frac{1}{2^{5/2}}\frac{\rho\lambda^3}{\omega}+\cdots\right).
+    \end{align}
+    容器温度给定，故两部分气体温度相等，$T_1=T_2$；活塞可以自由移动，故两部分气体压强相等，$P_1=P_2$. 故\uline{在 $T\rightarrow\infty$ 条件下}，两部分气体的分子数密度为
+    \begin{align}
+        \boxed{\frac{\rho_1}{\rho_2}=1.}
+    \end{align}
+
+    非相对论气体的态密度为
+    \begin{align}
+        D(\varepsilon)=\frac{(2j+1)m^{3/2}\varepsilon^{1/2}}{\sqrt{2}\pi^2\hbar^3}.
+    \end{align}
+    分子数密度为
+    \begin{gather}
+        \label{2-rho-epsilonF}
+        \rho=\frac{N}{V}=\int_0^{\varepsilon_F}\mathrm{d}\varepsilon\,D(\varepsilon)=\int_0^{\varepsilon_F}\mathrm{d}\varepsilon\,\frac{(2j+1)m^{3/2}\varepsilon^{1/2}}{\sqrt{2}\pi^2\hbar^3}=\frac{2}{3}\frac{(2j+1)m^{3/2}\varepsilon_F^{3/2}}{\sqrt{2}\pi^2\hbar^3},\\
+        \Longrightarrow\varepsilon_F=\left[\frac{3}{\sqrt{2}}\frac{\pi^2\hbar^3}{(2j+1)m^{3/2}}\frac{N}{V}\right]^{2/3}.
+    \end{gather}
+    在 $T=0$ 下，非相对论 Fermi 气体的内能为
+    \begin{align}
+        U=V\int_0^{\varepsilon_F}\mathrm{d}\varepsilon\,D(\varepsilon)\varepsilon=V\frac{2}{5}\frac{(2j+1)m^{3/2}\varepsilon_F^{5/2}}{\sqrt{2}\pi^2\hbar^3}.
+    \end{align}
+    因此
+    \begin{align}
+        U\propto V^{-2/3}.
+    \end{align}
+    压强为
+    \begin{align}
+        P=-\frac{\partial U}{\partial V}=\frac{2}{3}\frac{U}{V}=\frac{4}{15}\frac{(2j+1)m^{3/2}\varepsilon_F^{5/2}}{\sqrt{2}\pi^2\hbar^3}.
+    \end{align}
+    活塞可以自由移动，故两部分气体压强相等，$P_1=P_2$，即
+    \begin{gather}
+        \frac{4}{15}\frac{(2j_1+1)m^{3/2}\varepsilon_{F,1}^{5/2}}{\sqrt{2}\pi^2\hbar^3}=\frac{4}{15}\frac{(2j_2+1)m^{3/2}\varepsilon_{F,2}^{5/2}}{\sqrt{2}\pi^2\hbar^3},\\
+        \Longrightarrow\frac{\varepsilon_{F,1}}{\varepsilon_{F,2}}=\left(\frac{2j_1+1}{2j_2+1}\right)^{-2/5}.
+    \end{gather}
+    将上式代入式 \eqref{2-rho-epsilonF} 中可得在 \uline{$T=0$ 条件下}，两部分气体的分子数密度比值为
+    \begin{align}
+        \boxed{\frac{\rho_1}{\rho_2}=\frac{2j_1+1}{2j_2+1}\left(\frac{\varepsilon_{F,1}}{\varepsilon_{F,2}}\right)^{3/2}=\left(\frac{2j_1+1}{2j_2+1}\right)^{2/5}.}
+    \end{align}
+
+    综上，在 $T=0$ 和 $T\rightarrow\infty$ 条件下两种 Fermi 气体分子数密度的比值为
+    \begin{align}
+        \boxed{\frac{\rho_1}{\rho_2}=\left\{\begin{array}{ll}
+            \left(\frac{2j_1+1}{2j_2+1}\right)^{2/5},&T=0.\\
+            1,&T\rightarrow\infty.
+        \end{array}\right.}
+    \end{align}
 \end{sol}
 \clearpage
 
