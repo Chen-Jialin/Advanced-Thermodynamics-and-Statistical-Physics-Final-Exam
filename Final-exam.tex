@@ -254,7 +254,177 @@
     \end{itemize}
 \end{prob}
 \begin{sol}
-    
+    \begin{itemize}
+        \item[1)] 根据原子之间的相互作用势能，有
+        \begin{align}
+            f_{ij}(r)=e^{-\beta u_{ij}(r)}-1=\left\{\begin{array}{ll}
+                -1,&r\leq a,\\
+                e^{\beta g}-1,&a<r<b,\\
+                0,&r\geq b.
+            \end{array}\right.
+        \end{align}
+        利用 Mayer 第二定理对 $\frac{P}{kT}$ 按 $\rho$ 的幂级数展开，有
+        \begin{align}
+            \frac{P}{kT}=\rho\left[1-\frac{1}{2}\beta_1\rho+O(\rho^2)\right].
+        \end{align}
+        其中 viral 系数
+        \begin{align}
+            \beta_1=&2b_2,\\
+            \notag b_2=&\frac{1}{2!V}\int\mathrm{d}^3\vec{r}_2\int\mathrm{d}^3\vec{r}_1\,f_{12}(\abs{\vec{r}_1-\vec{r}_2})=2\pi\int_0^b\mathrm{d}r_{12}\,r_{12}^2f_{12}(r_{12})=2\pi\left[\int_0^a\mathrm{d}r_{12}\,r_{12}^2(-1)+\int_a^b\mathrm{d}r_{12}\,r_{12}^2(e^{\beta g}-1)\right]\\
+            =&2\pi\left[-\frac{a^3}{3}+(e^{\beta g}-1)(b^3-a^3)\right],
+        \end{align}
+        故
+        \begin{align}
+            \boxed{\frac{P}{kT}=\rho\left\{1-2\pi\left[-\frac{a^3}{3}+(e^{\beta g}-1)(b^3-a^3)\right]\rho+O(\rho^2)\right\}.}
+        \end{align}
+        % 利用 Mayer 第一定理对 $\frac{P}{kT}$ 按 $\rho$ 的幂级数展开，有
+        % \begin{align}
+        %     \frac{P}{kT}=\rho\left[1-\frac{1}{2}\beta_2\rho-\frac{2}{3}\beta_2\rho^2+O(\rho^3)\right],
+        % \end{align}
+        % 其中 viral 系数
+        % \begin{align}
+        %     \beta_1=&2b_2,\\
+        %     \beta_2=&3(b_3-2b_2^2).
+        % \end{align}
+        % 而
+        % \begin{align}
+        %     \notag b_2=&\frac{1}{2!V}\int\mathrm{d}^3\vec{r}_2\int\mathrm{d}^3\vec{r}_1\,f_{12}(\abs{\vec{r}_1-\vec{r}_2})=2\pi\int_0^b\mathrm{d}r_{12}\,r_{12}^2f_{12}(r_{12})=2\pi\left[\int_0^a\mathrm{d}r_{12}\,r_{12}^2(-1)+\int_a^b\mathrm{d}r_{12}\,r_{12}^2(e^{\beta g}-1)\right]\\
+        %     =&2\pi\left[-\frac{a^3}{3}+(e^{\beta g}-1)(b^3-a^3)\right],\\
+        %     \notag b_3=&\frac{1}{3!V}\int\mathrm{d}^3\vec{r}_3\int\mathrm{d}\vec{r}_2\int\mathrm{d}\vec{r}_1[3f_{12}(\abs{\vec{r}_1-\vec{r}_2})f_{13}(\abs{\vec{r}_1-\vec{r}_3})-f_{12}(\abs{\vec{r}_1-\vec{r}_2})f_{13}(\abs{\vec{r}_1-\vec{r}_3})f_{23}(\abs{\vec{r}_2-\vec{r}_3})]\\
+        %     \notag=&8\pi^2\int_0^b\mathrm{d}r_{12}\,r_{12}^2f_{12}(r_{12})\int_0^b\mathrm{d}r_{13}\,r_{13}^2f_{13}(r_{13})-\frac{1}{6}\int\mathrm{d}^3\vec{r}_{12}\int\mathrm{d}^3\vec{r}_{13}f_{12}(r_{12})f_{13}(r_{13})f_{23}(\abs{\vec{r}_{12}-\vec{r}_{13}})\\
+        %     =&8\pi^2\left[-\frac{a^3}{3}+(e^{\beta g}-1)(b^3-a^3)\right]^2-\frac{1}{6}\int\mathrm{d}^3\vec{r}_{12}\int\mathrm{d}^3\vec{r}_{13}f_{12}(r_{12})f_{13}(r_{13})f_{23}(\abs{\vec{r}_{12}-\vec{r}_{13}}).
+        % \end{align}
+        % 其中定义积分
+        % \begin{align}
+        %     I=-\frac{1}{6}\int\mathrm{d}^3\vec{r}_{12}\int\mathrm{d}^3\vec{r}_{13}f_{12}(r_{12})f_{13}(r_{13})f_{23}(\abs{\vec{r}_{12}-\vec{r}_{13}}).
+        % \end{align}
+        % 若 $b/2\leq a\leq b$，
+        % {\scriptsize
+        % \begin{align}
+        %     \notag&\int\mathrm{d}^3\vec{r}_{12}\int\mathrm{d}^3\vec{r}_{13}f_{12}(r_{12})f_{13}(r_{13})f_{23}(\abs{\vec{r}_{12}-\vec{r}_{13}})\\
+        %     \notag I=&-\frac{2\pi}{3}\int_0^{b-a}\mathrm{d}r_{12}\,r_{12}^2\left\{(-1)\times 2\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&+(e^{\beta g}-1)\times 2\left(\frac{4\pi}{3}a^3-\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\\
+        %     \notag&\left.+(-1)(e^{\beta g}-1)^2\times 2\left[\int_0^{b-\frac{r_{12}}{2}}\pi[b-(b-x)^2]\,\mathrm{d}x-\left(\frac{4\pi}{3}a^3-\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\right]\right\}\\
+        %     \notag&-\frac{2\pi}{3}\int_{b-a}^a\mathrm{d}r_{12}\,r_{12}^2\,\left\{(-1)\cdot 2\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&+(e^{\beta g}-1)\times 2\left(\int_0^{a-\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[a^2-(a-x)^2]\,\mathrm{d}x+\int_0^{b-r_{12}+\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[b^2-(b-x)^2]\,\mathrm{d}x-2\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\\
+        %     \notag&+(-1)(e^{\beta g}-1)^2\times 2\left[\int_0^{b-\frac{r_{12}}{2}}\pi[b^2-(b-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&\left.\left.-\left(\int_0^{a-\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[a^2-(a-x)^2]\,\mathrm{d}x+\int_0^{b-r_{12}+\frac{a^2-r_{12}^2-b^2}{2r_{12}}}\pi[b^2-(b-x)^2]\,\mathrm{d}x-\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\right]\right\}\\
+        %     \notag&-\frac{2\pi}{3}\int_a^b\mathrm{d}r_{12}\,r_{12}^2\,\left\{(e^{\beta g}-1)\times 2\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&+(-1)(e^{\beta g}-1)^2\times 2\left(\int_0^{a-\frac{a^2-r_{12}^2-b^2}{2r_{12}}}\pi[a^2-(a-x)^2]\,\mathrm{d}x+\int_0^{b-r_{12}+\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[b^2-(b-x)^2]\,\mathrm{d}x-2\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\\
+        %     \notag&+(e^{\beta g}-1)^3\times 2\left[\int_0^{b-\frac{r_{12}}{2}}\pi[b^2-(b-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&\left.\left.-\left(\int_0^{a-\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[a^2-(a-x)^2]\,\mathrm{d}x+\int_0^{b-r_{12}+\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[b^2-(b-x)^2]\,\mathrm{d}x-\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\right]\right\},\\
+        %     \notag=&\frac{\pi^2}{36}\left[(6e^{3\beta g}-2e^{2\beta g}+e^{\beta g})a^6-18e^{\beta g}(e^{\beta g}-1)^2a^4b^2-32e^{\beta g}(e^{\beta g}-1)a^3b^3+18e^{2\beta g}(e^{\beta g}-1)a^2b^4\right.\\
+        %     &\left.-(e^{\beta g}-1)ab^5-2(e^{\beta g}-1)(6e^{\beta g}-10e^{\beta g}+5)b^6\right]
+        % \end{align}
+        % }
+        % 若 $b/3\leq a<b/2$，
+        % {\scriptsize
+        % \begin{align}
+        %     \notag I=&-\frac{2\pi}{3}\int_0^a\mathrm{d}r_{12}\,r_{12}^2\left\{(-1)\times 2\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&+(e^{\beta g}-1)\times 2\left(\frac{4\pi}{3}a^3-2\int_0^{a-\frac{r_12}{2}}\pi[a^2-(a-x)^2]\mathrm{d}x\right)\\
+        %     \notag&\left.+(-1)(e^{\beta g}-1)^2\times 2\left[\int_0^{b-\frac{r_{12}}{2}}\pi[b^2-(b-x)^2]\,\mathrm{d}x-\left(\frac{4\pi}{3}a^3-\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\right]\right\}\\
+        %     \notag&-\frac{2\pi}{3}\int_a^{2a}\mathrm{d}r_{12}\,r_{12}^2\left\{(e^{\beta g}-1)\times 2\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(x-a)^2]\,\mathrm{d}x\right.\\
+        %     \notag&+(-1)(e^{\beta g}-1)^2\times 2\left(\frac{4\pi}{3}a^3-2\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\\
+        %     \notag&+(e^{\beta g}-1)^3\times 2\left[\int_0^{b-\frac{r_{12}}{2}}\pi[b^2-(b-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&\left.\left.-\left(\frac{4\pi}{3}a^3-\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\right]\right\}\\
+        %     \notag&-\frac{2\pi}{3}\int_{b-a}^{aa}\mathrm{d}r_{12}\,r_{12}^2\left\{(e^{\beta g}-1)\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&+(-1)(e^{\beta g}-1)^2\times 2\left(\int_0^{a-\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[a^2-(a-x)^2]\,\mathrm{d}x+\int_0^{b-r_{12}+\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[b^2-(b-x)^2]\,\mathrm{d}x-2\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\\
+        %     \notag&+(e^{\beta g}-1)^3\times 2\left[\int_0^{b-\frac{r_{12}}{2}}\pi[b^2-(b-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&\left.\left.-\left(\int_0^{a-\frac{a^2+r_12^2-b^2}{2r_{12}}}\pi[a^2-(a-x)^2]\,\mathrm{d}x+\int_0^{b-r_{12}+\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[b^2-(b-x)^2]\,\mathrm{d}x-\int_0^{a-\frac{r_{12}}{2}}\pi[a^2-(a-x)^2]\,\mathrm{d}x\right)\right]\right\}\\
+        %     \notag&-\frac{2\pi}{3}\int_{2a}^b\mathrm{d}r_{12}\,r_{12}^2\left\{(-1)(e^{\beta g}-1)^2\times 2\left(\int_0^{a-\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[a^2-(a-x)^2]\,\mathrm{d}x+\int_0^{b-r_{12}+\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[b^2-(b-x)^2]\,\mathrm{d}x\right)\right.\\
+        %     \notag&\left.+(e^{\beta g}-1)^3\times 2\left[\int_0^{b-\frac{r_{12}}{2}}\pi[b^2-(b-x)^2]\,\mathrm{d}x-\left(\int_0^{a-\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[a^2-(a-x)^2]\,\mathrm{d}x+\int_0^{b-r_{12}+\frac{a^2+r_{12}^2-b^2}{2r_{12}}}\pi[b^2-(b-x)^2]\,\mathrm{d}x\right)\right]\right\}\\
+        %     \notag=&\frac{\pi^2}{216}\left[-3(52e^{3\beta g}-60e^{2\beta g}-29e^{\beta g}+27)a^6+-162(e^{\beta g}-1)a^5b+-27(e^{\beta g}-1)(4e^{2\beta g}-4e^{\beta g}-7)a^4b^2\right.\\
+        %     &\left.+12(e^{\beta g}-1)(16e^{2\beta g}-16e^{\beta g}-7)a^3b^3+3(e^{\beta g}-1)a^2b^4+6(e^{\beta g}-1)ab^5-(e^{\beta g}-1)(30e^{2\beta g}-60e^{\beta g}+31)b^6\right].
+        % \end{align}
+        % }
+        % 若 $0\leq a<b/3$，
+        % {\footnotesize
+        % \begin{align}
+        %     \notag I=&\frac{2\pi}{3}\int_0^a\mathrm{d}r_{12}\,r_{12}^2\,\left\{(-1)\times 2\int_0^{a-\frac{r_{12}}{2}}[a^2-(a-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&+(e^{\beta g}-1)\times 2\left(\frac{4\pi}{3}a^3-2\int_0^{a-\frac{r_{12}}{2}}[a^2-(a-x)^2]\,\mathrm{d}x\right)\\
+        %     \notag&\left.+(-1)(e^{\beta g}-1)\times 2\left[\int_0^{b-\frac{r_{12}}{2}}[b^2-(b-x)^2]\,\mathrm{d}x-\left(\frac{4\pi}{3}a^3-\int_0^{a-\frac{r_{12}}{2}}[a^2-(a-x)^2]\,\mathrm{d}x\right)\right]\right\}\\
+        %     \notag&+\frac{2\pi}{3}\int_a^{2a}\mathrm{d}r_{12}\,r_{12}^2\left\{(e^{\beta g}-1)\times 2\int_0^{a-\frac{r_{12}}{2}}[a^2-(a-x)^2]\,\mathrm{d}x\right.\\
+        %     \notag&+(-1)(e^{\beta g}-1)^2\times 2\left(\frac{4\pi}{3}a^3-2\int_0^{a-\frac{r_{12}}{2}}[a^2-(a-x)^2]\,\mathrm{d}x\right)\\
+        %     \notag&+(e^{\beta g}-1)^3\times 2\left[\int_0^{b-\frac{r_{12}}{2}}[b^2-(b-x)^2]\,\mathrm{d}x-\left(\frac{4\pi}{3}a^3-\int_0^{a-\frac{r_{12}}{2}}[a^2-(a-x)^2]\,\mathrm{d}x\right)\right]\\
+        %     \notag&+\frac{2\pi}{3}\int_{2a}^{b-a}\mathrm{d}r_{12}\,r_{12}^2\left\{(-1)(e^{\beta g}-1)^2\times 2\frac{4\pi}{3}a^3\right.\\
+        %     \notag&\left.+(e^{\beta g}-1)^3\times 2\left(\int_0^{b-\frac{r_{12}}{2}}[b^2-(b-x)^2]\,\mathrm{d}x-\frac{4\pi}{3}a^3\right)\right\}\\
+        %     \notag&+\frac{2\pi}{3}\int_{b-a}^b\mathrm{d}r_{12}\,r_{12}^2\times\left\{(-1)(e^{\beta g}-1)^2\times 2\left(\int_0^{a-\frac{a^2+r_{12}^2-b^2}{2r_{12}}}[a^2-(a-x)^2]\,\mathrm{d}x+\int_0^{b-r_{12}+\frac{a^2+r_{12}^2-b^2}{2r_{12}}}[b^2-(b-x)^2]\,\mathrm{d}x\right)\right.\\
+        %     \notag&\left.+(e^{\beta g}-1)^3\times 2\int_0^{b-\frac{r_{12}}{2}}[b^2-(b-x)^2]\,\mathrm{d}x-\left(\int_0^{a-\frac{a^2+r_{12}^2-b^2}{2r_{12}}}[a^2-(a-x)^2]\,\mathrm{d}x+\int_0^{b-r_{12}+\frac{a^2+r_{12}^2-b^2}{2r_{12}}}[b^2-(b-x)^2]\,\mathrm{d}x\right)\right\}\\
+        %     =&\frac{\pi^2}{36}\left[-e^{\beta g}(26e^{2\beta g}-30e^{\beta g}-1)a^6-18e^{\beta g}(e^{\beta g}-1)^2a^4b^2-32e^{\beta g}(e^{\beta g}-1)^2a^3b^3-5(e^{\beta g}-1)^3b^6\right]
+        % \end{align}
+        % }
+        % 从而
+        % \begin{align}
+        %     \boxed{\frac{P}{kT}=\rho\left\{1-2\pi\left[-\frac{a^3}{3}+(e^{\beta g}-1)(b^3-a^3)\right]\rho-2I\rho^2+O(\rho^3)\right\},}
+        % \end{align}
+        % 其中 $I$ 的解析表达式见上.
+        \item[2)] 理想气体的状态方程为
+        \begin{align}
+            \rho_0=\frac{P}{kT}.
+        \end{align}
+        上式与该非理想气体的状态方程联立得
+        \begin{gather}
+            \rho_0=\rho[1-b_2\rho+O(\rho^2)],\\
+            \Longrightarrow \rho=\rho_0\left[1+b_2\rho_0+O(\rho_0^2)\right],
+        \end{gather}
+        其中
+        \begin{align}
+            \rho=&\sum_{l=1}^{\infty}lb_ly^l=y+2b_2y^2+O(y^3),\\
+            \rho_0=&y_0.
+        \end{align}
+        从而
+        \begin{gather}
+            y_0=(y+2b_2y^2+O(y^3))[1-b_2(y+2b_2y^2+O(y^3))+O(y^2)]=y+b_2y^2+O(y^3),\\
+            \Longrightarrow y=y_0-b_2y_0^2+O(y_0^3).
+        \end{gather}
+        该气体的化学势为
+        \begin{align}
+            \mu=kT\ln z=kT\ln[\lambda^3 y]=kT\ln\left[\lambda^3(y_0-b_2y_0^2+O(y_0^3))\right]
+        \end{align}
+        其中
+        \begin{align}
+            y_0=\frac{z_0}{\lambda^3}=\frac{e^{\beta\mu_0}}{\lambda^3}\Longrightarrow\mu_0=kT\ln(\lambda^3y_0),
+        \end{align}
+        $\mu_0$ 为理想气体的化学势，$\beta=\frac{1}{kT}$，故
+        \begin{align}
+            \mu=\mu_0+kT\ln(1-b_2\rho_0+O(\rho_0^2))=\mu_0-kTb_2\rho_0+O(\rho_0^2)=\mu_0-kTb_2\rho+O(\rho^2),
+        \end{align}
+        即该气体的化学势对理想气体化学势的领头阶修正为 \uline{$kTb_2\rho$}，其中 $b_2=2\pi\left[-\frac{a^3}{3}+(e^{\beta g}-1)(b^3-a^3)\right]$.
+        \item[3)] 理想气体的 Gibbs 势为
+        \begin{align}
+            G_0=N\mu_0.
+        \end{align}
+        理想气体的熵为
+        \begin{align}
+            S_0=-\frac{\partial G_0}{\partial T}.
+        \end{align}
+        理想气体的内能为
+        \begin{align}
+            U_0=G_0+TS_0-PV.
+        \end{align}
+        该气体的 Gibbs 势为
+        \begin{align}
+            G=N\mu=G_0+N[kTb_2\rho+O(\rho^2)].
+        \end{align}
+        该气体的熵为
+        \begin{align}
+            \notag S=&-\frac{\partial G}{\partial T}=S_0+Nkb_2\rho+NkTb_2\frac{\partial\rho}{\partial T}\\
+            \notag=&S_0+Nkb_2\rho+NkTb_2\frac{\partial\{\rho_0[1+b_2\rho_0+O(\rho_0^2)]\}}{\partial T}\\
+            \notag=&S_0+Nkb_2\rho+NkTb_2(1+2b_2\rho_0+O(\rho_0^2))\frac{\partial\rho_0}{\partial T}\\
+            \notag=&S_0+Nkb_2\rho+NkTb_2(1+2b_2\rho_0+O(\rho_0^2))\frac{\partial\left(\frac{P}{kT}\right)}{\partial T}\\
+            \notag=&S_0+Nkb_2\rho+NkTb_2(1+2b_2\rho_0+O(\rho_0^2))\left(-\frac{P}{kT^2}\right)\\
+            \notag=&S_0+Nkb_2\rho-Nkb_2\rho_0(1+2b_2\rho_0+O(\rho_0^2))\\
+            \notag=&S_0+Nkb_2\rho-Nkb_2\rho(1-b_2\rho+O(\rho^2))[1+2b_2\rho(1-b_2\rho+O(\rho^2))+O(\rho^2)]\\
+            \notag=&S_0+O(\rho^2),
+        \end{align}
+        即该气体的熵对理想气体的熵的领头阶修正为 \uline{$0$}.
+        该气体的内能为
+        \begin{align}
+            \notag U=&G+TS-PV=G_0+N[kTb_2\rho+O(\rho^2)]+T[S_0+O(\rho^2)]+PV=G_0+NkTb_2\rho+TS_0+O(\rho^2)\\
+            =&U_0+NkTb_2\rho+O(\rho^2),
+        \end{align}
+        即该气体的内能对理想气体的内能的领头阶修正为 \uline{$NkTb_2\rho$}，其中 $b_2=2\pi\left[-\frac{a^3}{3}+(e^{\beta g}-1)(b^3-a^3)\right]$.
+    \end{itemize}
 \end{sol}
 \clearpage
 
