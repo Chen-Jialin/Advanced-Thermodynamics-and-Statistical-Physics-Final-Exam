@@ -438,7 +438,184 @@
     提示：要求格点至少为 $10\times 10$，并取周期性边界条件.
 \end{prob}
 \begin{sol}
-    
+    \begin{itemize}
+        \item[1)] Ising 模型的 Hamiltonian 为
+        \begin{align}
+            H(\{S_i\})=-\frac{1}{2}J\sum_{\langle i,j\rangle}S_i\cdot S_j,
+        \end{align}
+        其中 $J$ 为近邻对的耦合系数，$S_i$ 为第 $i$ 个格点的自旋且 $S_i\in\{\pm 1\}$，$\sum_{\langle i,j\rangle}$ 代表对相邻的格点对求和.
+
+        计算过程：
+        \begin{itemize}
+            \item[1.] \textbf{初始化}：设定正方形晶格尺寸 $L\times L$，温度 $T$，耦合系数 $J$，所有自旋均向上，即$(S_i)_z=+1\quad\forall i$；
+            \item[2.] \textbf{Warming up}：随机选取晶格中的某个格点 $i$，利用上面的 Hamiltonian 计算该格点的自旋在翻转前和翻转后的能量差：
+            \begin{align}
+                \Delta E=-JS_i\cdot\sum_{j\in\{\text{neighbors of i}\}}S_j.
+            \end{align}
+            若 $\Delta E<0$，则翻转该格点的自旋；否则生成一个在 $[0,1)$ 范围内均匀分布的随机数 $r$，比较 $r$ 和 $e^{-E/kT}$，若 $r\leq e^{-\Delta E/kT}$，则翻转该格点的自旋，若 $r>e^{-\Delta E/kT}$，则不翻转（即按照 $e^{-E/kT}$ 的概率翻转该格点的自旋）. 重复这样的操作足够多步，使系统达到平衡态；
+            \item[3.] \textbf{演化和测量}：用与上一步相同的方法，随机选择格点并尝试翻转其自旋，每完成一步，就测量一次系统的磁化强度（这里假设单位晶胞的大小为 $1$）
+            \begin{align}
+                M=\frac{1}{L\times L}\sum_iS_i.
+            \end{align}
+            重复这样的操作足够多次，然后计算磁化强度的平均值 $\langle M\rangle$.
+            \item[4.] 扫描温度 $T$，重复以上 2.、3. 步骤，从而得到磁化强度随温度的函数曲线.
+        \end{itemize}
+        \item[2)] 这里我们取各点数为 $32\times 32$，简单起见取 $k=1$，$J=1$，温度从 $0.01$ K 扫描到 $5.00$ K，步长为 $0.01$ K，得到如图 \ref{4-M-T} 所示的磁化强度关于温度的函数曲线.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.5\columnwidth]{P4.pdf}
+            \caption{$32\times 32$ 格点的 Ising 模型磁化强度关于温度的函数曲线.}
+            \label{4-M-T}
+        \end{figure}
+        \item[3)] 由图 \ref{4-M-T} 中可见，该 Ising 模型的临界温度约 $2.3$ K，利用平均场理论，临界温度的严格解为
+        \begin{align}
+            \tanh^2\frac{2J}{kT_c}=\frac{1}{2}\Longrightarrow T_c=\frac{2J}{k\ln(1+\sqrt{2})}=\frac{2\times 1}{1\times\ln(1+\sqrt{2})}\text{ K}=2.269\text{ K}.
+        \end{align}
+        两者符合得较好.
+    \end{itemize}
+    附 Fortran 代码如下：
+    \begin{lstlisting}
+program main
+    use mpi
+    implicit none
+    real(8), parameter :: pi = acos(-1.d0), kB = 1.d0
+    integer :: ntasks, id, rc
+    integer, allocatable :: status(:)
+    integer :: i, n, clock
+    integer, allocatable :: seed(:)
+    real(8) :: r
+
+    real(8) :: T = .01d0, dT = .01d0, T_final = 5.d0, beta
+    integer, parameter :: L_x = 32, L_y = 32
+    integer :: lattice(0:L_x - 1,0:L_y - 1) = 1
+    integer :: x, y
+    integer, parameter :: n_warmup = 10000, n_evol = 100000
+    real(8) :: J = 1.d0, B = 0.d0
+    real(8) :: M, M_sqr, E_tmp, E, E_sqr, M_ave, M_sqr_ave, chi, E_ave, E_sqr_ave, C
+
+    ! initialize MPI environment
+    call MPI_INIT(rc)
+    call MPI_COMM_SIZE(MPI_COMM_WORLD, ntasks, rc)
+    call MPI_COMM_RANK(MPI_COMM_WORLD, id, rc)
+    allocate(status(MPI_STATUS_SIZE))
+
+    ! initialize seeds for different processes
+    if (id == 0) then
+        call SYSTEM_CLOCK(clock)
+        call RANDOM_SEED(size = n)
+        allocate(seed(n))
+        do i = 1, n
+            seed(i) = clock + 37 * i
+        end do
+        call RANDOM_SEED(PUT = seed)
+        deallocate(seed)
+        do i = 1, ntasks - 1
+            call RANDOM_NUMBER(r)
+            clock = clock + Int(r * 1000000)
+            call MPI_SEND(clock, 1, MPI_INTEGER, i, i, MPI_COMM_WORLD, rc)
+        end do
+    else
+        call MPI_RECV(clock, 1, MPI_INTEGER, 0, id, MPI_COMM_WORLD, status, rc)
+        call RANDOM_SEED(size = n)
+        allocate(seed(n))
+        do i = 1, n
+            seed(i) = clock + 37 * i
+        end do
+        call RANDOM_SEED(PUT = seed)
+        deallocate(seed)
+    end if
+
+    if (id == 0) then
+        open(unit = 1, file = 'data.txt', status = 'unknown')
+        write(*,'(4a20)') 'T', 'm', 'chi', 'C'
+    end if
+
+    do while (T < T_final)
+        beta = 1.d0 / kB / T
+        M = 0.d0
+        M_sqr = 0.d0
+        E = 0.d0
+        E_sqr = 0.d0
+
+        ! warm up
+        do i = 1, n_warmup
+            call EVOLUTION(lattice, L_x, L_y, beta, B, J)
+        end do
+
+        ! evolution
+        do i = 1, n_evol
+            call EVOLUTION(lattice, L_x, L_y, beta, B, J)
+            M = M + sum(lattice)
+            M_sqr = M_sqr + sum(lattice)**2
+            E_tmp = 0.d0
+            do x = 0, L_x - 2
+                do y = 0, L_y - 2
+                    E_tmp = E_tmp + lattice(x, y) * (lattice(x + 1, y) + lattice(x, y + 1))
+                end do
+            end do
+            do x = 0, L_x - 2
+                E_tmp = E_tmp + lattice(x, L_y - 1) * (lattice(x + 1, L_y - 1) + lattice(x, 0))
+            end do
+            do y = 0, L_y - 2
+                E_tmp = E_tmp + lattice(L_x - 1, y) * (lattice(L_x - 1, y + 1) + lattice(0, y))
+            end do
+            E_tmp = E_tmp + lattice(L_x - 1, L_y - 1) * (lattice(0, L_y - 1) + Lattice(L_x - 1, 0))
+            E_tmp = - E_tmp * J - B * sum(lattice)
+            E = E + E_tmp
+            E_sqr = E_sqr + E_tmp**2
+        end do
+        call MPI_REDUCE(M, M_ave, 1, MPI_REAL8, MPI_SUM, 0, MPI_COMM_WORLD, rc)
+        call MPI_REDUCE(M_sqr, M_sqr_ave, 1, MPI_REAL8, MPI_SUM, 0, MPI_COMM_WORLD, rc)
+        call MPI_REDUCE(E, E_ave, 1, MPI_REAL8, MPI_SUM, 0, MPI_COMM_WORLD, rc)
+        call MPI_REDUCE(E_sqr, E_sqr_ave, 1, MPI_REAL8, MPI_SUM, 0, MPI_COMM_WORLD, rc)
+        if (id == 0) then
+            M_ave = M_ave / dble(ntasks * n_evol)
+            M_sqr_ave = M_sqr_ave / dble(ntasks * n_evol)
+            chi = beta * (M_sqr_ave - M_ave**2)
+            E_ave = E_ave / dble(ntasks * n_evol)
+            E_sqr_ave = E_sqr_ave / dble(ntasks * n_evol)
+            C = kB * beta**2 / dble((L_x) * (L_y)) * (E_sqr_ave - E_ave**2)
+            write(*,'(4f20.10)') T, M_ave / dble((L_x) * (L_y)), chi, C
+            write(1,'(4f20.10)') T, M_ave / dble((L_x) * (L_y)), chi, C
+        end if
+        T = T + dT
+    end do
+
+    if (id == 0) then
+        close(1)
+    end if
+
+    ! done with MPI
+    call MPI_FINALIZE(rc)
+end program main
+
+subroutine EVOLUTION(lattice, L_x, L_y, beta, B, J)
+    implicit none
+    integer, intent(in) :: L_x, L_y
+    integer, intent(inout) :: lattice(0:L_x - 1, 0:L_y - 1)
+    real(8), intent(in) :: beta, B, J
+    real(8) :: r
+    integer :: x, y
+    real(8) :: dE
+
+    call RANDOM_NUMBER(r)
+    x = floor(r * dble(L_x))
+    call RANDOM_NUMBER(r)
+    y = floor(r * dble(L_y))
+
+    dE = 0.d0
+    dE = dE + 2.d0 * J * lattice(x,y) * (lattice(modulo(x - 1, L_x), y)&
+        + lattice(modulo(x + 1, L_x), y)&
+        + lattice(x, modulo(y - 1, L_y))&
+        + lattice(x, modulo(y + 1, L_y)))&
+        + 2.d0 * B * dble(lattice(x,y))
+
+    call RANDOM_NUMBER(r)
+    if (r < exp(-beta * dE)) then
+        lattice(x,y) = -lattice(x,y)
+    end if
+end subroutine EVOLUTION
+    \end{lstlisting}
 \end{sol}
 \clearpage
 

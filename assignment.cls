@@ -200,7 +200,7 @@
     numbers=left, % 在左侧添加行号 Add line numbers at left
     frame=single, % 用单线框围绕代码 Enclose code with single-line frames
     breaklines=true, % 自动折行 Wrap automatically
-    showspaces=true, % 显示空格 Show spaces
+    showspaces=false, % 显示空格 Show spaces
     showtabs=true, % 显示制表符 Show tabs
     tab=\rightarrowfill % 用右箭头填充制表符 Fill tabs with right arrows
 }
