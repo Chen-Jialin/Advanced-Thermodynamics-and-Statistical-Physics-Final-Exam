@@ -628,16 +628,41 @@ end subroutine EVOLUTION
     \begin{itemize}
         \item[1)] 证明相互作用能密度的平均值
         \[
-            E[\{n_{\vec{p}}\}]\equiv\frac{1}{V}\langle\{n_{\vec{p}}\}\rvert\Omega\lvert\{n_{\vec{p}}\}\rangle=g\rho^2-\frac{g}{2V}\sum_{\vec{p}}n_{\vec{p}}^2-\frac{g\rho}{2V}
+            E[\{n_{\vec{p}}\}]\equiv\frac{1}{V}\langle\{n_{\vec{p}}\}\rvert\Omega\lvert\{n_{\vec{p}}\}\rangle=g\rho^2-\frac{g}{2V^2}\sum_{\vec{p}}n_{\vec{p}}^2-\frac{g\rho}{2V}
         \]
         其中 $\rho$ 玻色子的数密度.
         \item[2)] 在热力学极限下比较有 Bose-Einstein 凝聚的上述平均值 $E$ 和没有 Bose-Einstein 凝聚的上述平均值 $E'$，证明
         \[
-            E<E'\tag{\text{（5 分）}}
+            E<E'\tag{\text{5 分}}
         \]
     \end{itemize}
 \end{prob}
 \begin{pf}
-    
+    \begin{itemize}
+        \item[1)] 自由波色气体的能量本征态为
+        \begin{align}
+            \lvert\{n_{\vec{p}}\}\rangle=\prod_{\vec{p}}\frac{\left(a_{\vec{p}}^{\dagger}\right)^{n_{\vec{p}}}}{\sqrt{n_{\vec{p}}!}}\lvert 0\rangle.
+        \end{align}
+        相互作用能密度的平均值为
+        {\small
+        \begin{align}
+            \notag&E[\{n_{\vec{p}}\}]=\frac{1}{V}\langle\{n_{\vec{p}}\}\rvert\Omega\lvert\{n_{\vec{p}}\}\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\sum_{\vec{p}_1+\vec{p}_2=\vec{p}_1'+\vec{p}_2'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert \left(a_{\vec{p}'}\right)^{n_{\vec{p}}}a_{\vec{p}_1'}^{\dagger}a_{\vec{p}_2'}^{\dagger}a_{\vec{p}_2}a_{\vec{p}_1}\left(a_{\vec{p}}^{\dagger}\right)^{n_{\vec{p}}}\lvert 0\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\sum_{\vec{p}_1+\vec{p}_2=\vec{p}_1'+\vec{p}_2'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert \left(a_{\vec{p}'}\right)^{n_{\vec{p}}}a_{\vec{p}_1'}^{\dagger}a_{\vec{p}_2'}^{\dagger}a_{\vec{p}_2}\left\{[a_{\vec{p}_1},a_{\vec{p}}^{\dagger}]+a_{\vec{p}}^{\dagger}a_{\vec{p}_1}\right\}\left(a_{\vec{p}}^{\dagger}\right)^{n_{\vec{p}}-1}\lvert 0\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\sum_{\vec{p}_1+\vec{p}_2=\vec{p}_1'+\vec{p}_2'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert \left(a_{\vec{p}'}\right)^{n_{\vec{p}}}a_{\vec{p}_1'}^{\dagger}a_{\vec{p}_2'}^{\dagger}a_{\vec{p}_2}\left\{\delta_{\vec{p}_1\vec{p}}+a_{\vec{p}}^{\dagger}a_{\vec{p}_1}\right\}\left(a_{\vec{p}}^{\dagger}\right)^{n_{\vec{p}}-1}\lvert 0\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\sum_{\vec{p}_1+\vec{p}_2=\vec{p}_1'+\vec{p}_2'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert \left(a_{\vec{p}'}\right)^{n_{\vec{p}}}a_{\vec{p}_1'}^{\dagger}a_{\vec{p}_2'}^{\dagger}a_{\vec{p}_2}\left\{\delta_{\vec{p}_1\vec{p}}+a_{\vec{p}}^{\dagger}\delta_{\vec{p}_1\vec{p}}+\left(a_{\vec{p}}^{\dagger}\right)^2a_{\vec{p}_1}\right\}\left(a_{\vec{p}}^{\dagger}\right)^{n_{\vec{p}}-2}\lvert 0\rangle\\
+            \notag&\cdots\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\sum_{\vec{p}_1+\vec{p}_2=\vec{p}_1'+\vec{p}_2'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert \left(a_{\vec{p}'}\right)^{n_{\vec{p}}}a_{\vec{p}_1'}^{\dagger}a_{\vec{p}_2'}^{\dagger}a_{\vec{p}_2}\left\{\delta_{\vec{p}_1\vec{p}}\sum_{n=0}^{n_{\vec{p}}-1}\left(a_{\vec{p}}^{\dagger}\right)^n+\left(a_{\vec{p}}^{\dagger}\right)^{n_{\vec{p}}}a_{\vec{p}_1}\right\}\lvert 0\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\sum_{\vec{p}_1,\vec{p}_2,\vec{p}_1',\vec{p}_2'=\vec{p}_1+\vec{p}_2-\vec{p}_1'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert \left(a_{\vec{p}'}\right)^{n_{\vec{p}}}a_{\vec{p}_1'}^{\dagger}a_{\vec{p}_2'}^{\dagger}a_{\vec{p}_2}\left\{\delta_{\vec{p}_1\vec{p}}\sum_{n=0}^{n_{\vec{p}}-1}\left(a_{\vec{p}}^{\dagger}\right)^n+\left(a_{\vec{p}}^{\dagger}\right)^{n_{\vec{p}}}a_{\vec{p}_1}\right\}\lvert 0\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\sum_{\vec{p}_2,\vec{p}_1',\vec{p}_2'=\vec{p}+\vec{p}_2-\vec{p}_1'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert \left(a_{\vec{p}'}\right)^{n_{\vec{p}}}a_{\vec{p}_1'}^{\dagger}a_{\vec{p}_2'}^{\dagger}a_{\vec{p}_2}\left\{\sum_{n=0}^{n_{\vec{p}}-1}\left(a_{\vec{p}}^{\dagger}\right)^n\right\}\lvert 0\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\sum_{\vec{p}_1',\vec{p}_2'=2\vec{p}-\vec{p}_1'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert \left(a_{\vec{p}'}\right)^{n_{\vec{p}}}a_{\vec{p}_1'}^{\dagger}a_{\vec{p}_2'}^{\dagger}\left\{\sum_{n=0}^{n_{\vec{p}}-1}\sum_{m=0}^{n-1}\left(a_{\vec{p}}^{\dagger}\right)^m\right\}\lvert 0\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert\left\{\sum_{l=0}^{n_{\vec{p}'-1}}\left(a_{\vec{p}'}\right)^l\right\}a_{2\vec{p}-\vec{p}'}^{\dagger}\left\{\sum_{n=0}^{n_{\vec{p}}-1}\sum_{m=0}^{n-1}\left(a_{\vec{p}}^{\dagger}\right)^m\right\}\lvert 0\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert\left\{\sum_{l=0}^{n_{\vec{p}-1}}\sum_{k=0}^{l-1}\left(a_{\vec{p}'}\right)^k\delta_{\vec{p}',2\vec{p}-\vec{p}'}\right\}\left\{\sum_{n=0}^{n_{\vec{p}}-1}\sum_{m=0}^{n-1}\left(a_{\vec{p}}^{\dagger}\right)^m\right\}\lvert 0\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert\left\{\sum_{l=0}^{n_{\vec{p}-1}}\sum_{k=0}^{l-1}\left(a_{\vec{p}'}\right)^k\delta_{\vec{p},\vec{p}'}\right\}\left\{\sum_{n=0}^{n_{\vec{p}}-1}\sum_{m=0}^{n-1}\left(a_{\vec{p}}^{\dagger}\right)^m\right\}\lvert 0\rangle\\
+            \notag=&\frac{g}{V^2}\prod_{\vec{p},\vec{p}'}\frac{1}{\sqrt{n_{\vec{p}'}!}}\frac{1}{\sqrt{n_{\vec{p}}!}}\langle 0\rvert\left\{\sum_{l=0}^{n_{\vec{p}'-1}}(n_{\vec{p}'}-l-1)\left(a_{\vec{p}'}\right)^l\delta_{\vec{p},\vec{p}'}\right\}\left\{\sum_{n=0}^{n_{\vec{p}}-1}(n_{\vec{p}}-n-1)\left(a_{\vec{p}}^{\dagger}\right)^n\right\}\lvert 0\rangle\\
+            =&g\rho^2-\frac{g}{2V^2}\sum_{\vec{p}}n_{\vec{p}}^2-\frac{g\rho}{2V}.
+        \end{align}
+        }
+    \end{itemize}
 \end{pf}
 \end{document}
